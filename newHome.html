@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whale Cage - Title Screen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #1a1a2e;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 40px;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .menu button {
+            font-size: 24px;
+            padding: 10px 30px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            background-color: #0f3460;
+            color: white;
+            transition: 0.3s;
+        }
+        .menu button:hover {
+            background-color: #e94560;
+        }
+    </style>
+</head>
+<body>
+    <h1>Whale Cage</h1>
+    <div class="menu">
+        <a href="game.html">
+            <button >Play</button>
+        </a>
+        <button onclick="window.open('', '_self', ''); window.close();">Exit</button>
+        <button onclick="showHelp()">Help</button>
+    </div>
+    
+    <script>
+        function startGame() {
+            
+        }
+        function exitGame() {
+            alert('Exiting game...'); // Actual exit behavior depends on platform
+        }
+        function showHelp() {
+            alert('Help menu: Instructions go here.'); //link to instruction page
+        }
+    </script>
+</body>
+</html>
