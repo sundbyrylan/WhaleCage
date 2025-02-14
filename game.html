@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrepreneur Investment Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        #game-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: auto;
+        }
+        .stat {
+            font-weight: bold;
+        }
+        button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .invest {
+            background-color: green;
+            color: white;
+        }
+        .pass {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <h2>Pitches</h2>
+    <p id="pitch">Click 'New Pitch' to start!</p>
+    
+    <button class="invest" onclick="invest()">Invest</button>
+    <button class="pass" onclick="nextPitch()">Pass</button>
+
+    <h3>Your Stats</h3>
+    <p>Influence: <span class="stat" id="influence">20</span></p>
+    <p>Profitability: <span class="stat" id="profitability">20</span></p>
+    <p>Reputation: <span class="stat" id="reputation">20</span></p>
+    <p>Networking: <span class="stat" id="networking">20</span></p>
+    <p>Business Strategy: <span class="stat" id="strategy">20</span></p>
+</div>
+
+<script>
+    let stats = {
+        influence: 50,
+        profitability: 50,
+        reputation: 50,
+        networking: 50,
+        strategy: 50
+    };
+
+    const pitches = [
+        { text: "A tech startup developing AI-driven customer service bots.", effects: { influence: +5, profitability: +7, reputation: +3, networking: +4, strategy: +6 } },
+        { text: "A sustainable fashion brand using recycled materials.", effects: { influence: +4, profitability: +3, reputation: +8, networking: +5, strategy: +2 } },
+        { text: "A delivery app for homemade meals.", effects: { influence: +3, profitability: +5, reputation: +6, networking: +7, strategy: +4 } },
+        { text: "A mobile game studio creating AR-based board games.", effects: { influence: +6, profitability: +4, reputation: +5, networking: +3, strategy: +8 } },
+        { text: "A fitness app that customizes workout plans with AI.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } }
+    ];
+
+    let round = 0;
+    const maxRounds = 5;
+
+    function nextPitch() {
+        if (checkEndGame()) return;
+
+            
+
+        
+
+        round++;
+        const randomIndex = Math.floor(Math.random() * pitches.length);
+        document.getElementById("pitch").innerText = pitches[randomIndex].text;
+    }
+
+    function invest() {
+        if (checkEndGame()) return;
+
+        let effects = pitches[Math.floor(Math.random() * pitches.length)].effects;
+        Object.keys(effects).forEach(stat => stats[stat] += effects[stat]);
+
+        updateStats();
+
+        nextPitch();
+    }
+
+    function updateStats() {
+        document.getElementById("influence").innerText = stats.influence;
+        document.getElementById("profitability").innerText = stats.profitability;
+        document.getElementById("reputation").innerText = stats.reputation;
+        document.getElementById("networking").innerText = stats.networking;
+        document.getElementById("strategy").innerText = stats.strategy;
+    }
+
+    function checkEndGame() {
+        if (round >= maxRounds){
+         if (Object.values(stats).some(stat => stat < 20)) {
+             window.location.href = "bad_ending.html";
+             return true;
+         }
+         if (Object.values(stats).every(stat => stat >= 80)) {
+             window.location.href = "good_ending.html";
+                return true;
+            }
+            if (Object.values(stats).every(stat => stat === 69)) {
+             window.location.href = "funny_ending.html";
+             return true;
+         }else{
+             window.location.href = "meh_ending.html";
+             return true;
+         }
+        }else{
+            return false
+        }
+    }
+
+    nextPitch(); 
+</script>
+
+</body>
+</html>
