@@ -109,15 +109,15 @@
 
     function checkEndGame() {
         if (round >= maxRounds){
-         if (Object.values(stats).some(stat => stat < 20)) {
+         if (Object.values(stats).some(stat => stat <= 20)) {
              window.location.href = "bad_ending.html";
              return true;
          }
-         if (Object.values(stats).every(stat => stat >= 80)) {
+         if (Object.values(stats).some(stat => stat <= 50)) {
              window.location.href = "good_ending.html";
                 return true;
             }
-            if (Object.values(stats).every(stat => stat === 69)) {
+            if (Object.values(stats).every(stat => stat <= 75)) {
              window.location.href = "funny_ending.html";
              return true;
          }else{
