@@ -77,23 +77,21 @@
 
     let round = 0;
     const maxRounds = 5;
+    let Index = 0;
 
     function nextPitch() {
         if (checkEndGame()) return;
 
-            
-
         
-
-        round++;
-        const randomIndex = Math.floor(Math.random() * pitches.length);
-        document.getElementById("pitch").innerText = pitches[randomIndex].text;
+        Index = round;
+        round++
+        document.getElementById("pitch").innerText = pitches[Index].text;
     }
 
     function invest() {
         if (checkEndGame()) return;
 
-        let effects = pitches[Math.floor(Math.random() * pitches.length)].effects;
+        let effects = pitches[Index].effects;
         Object.keys(effects).forEach(stat => stats[stat] += effects[stat]);
 
         updateStats();
@@ -129,6 +127,7 @@
         }else{
             return false
         }
+        nextPitch();
     }
 
     nextPitch(); 
