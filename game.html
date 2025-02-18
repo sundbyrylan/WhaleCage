@@ -56,7 +56,7 @@
     <p>Reputation: <span class="stat" id="reputation">20</span></p>
     <p>Networking: <span class="stat" id="networking">20</span></p>
     <p>Business Strategy: <span class="stat" id="strategy">20</span></p>
-    <p>Investing Score: <span class="stat" id="total">0</span></p>
+    <p>Investing Score: <span class="stat" id="average">20</span></p>
 </div>
 
 <script>
@@ -66,7 +66,7 @@
         reputation: 20,
         networking: 20,
         strategy: 20,
-        total: 100
+        average: 20
     };
 
     const pitches = [
@@ -112,7 +112,7 @@
         document.getElementById("reputation").innerText = stats.reputation;
         document.getElementById("networking").innerText = stats.networking;
         document.getElementById("strategy").innerText = stats.strategy;
-        document.getElementById("total").innerText = stats.influence+stats.profitability+stats.reputation+stats.networking+stats.strategy;
+        document.getElementById("average").innerText = (stats.influence+stats.profitability+stats.reputation+stats.networking+stats.strategy)/5;
     }
 
     function checkEndGame() {
