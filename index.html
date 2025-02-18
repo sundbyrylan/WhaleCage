@@ -61,6 +61,13 @@
         function showHelp() {
             alert('Help menu: Instructions go here.'); //link to instruction page
         }
+
+        function keyPress (e) {
+            if(e.key === "Escape") {
+                window.opener=null; window.close(); return false;
+            }
+        }
+        
     </script>
 </body>
 </html>
