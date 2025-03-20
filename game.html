@@ -107,7 +107,7 @@
          document.getElementById("reputation").innerText = stats.reputation;
          document.getElementById("networking").innerText = stats.networking;
          document.getElementById("strategy").innerText = stats.strategy;
-         document.getElementById("total").innerText = stats.influence+stats.profitability+stats.reputation+stats.networking+stats.strategy;
+         document.getElementById("total").innerText = (stats.influence+stats.profitability+stats.reputation+stats.networking+stats.strategy)/5;
      }
  
      function checkEndGame() {
