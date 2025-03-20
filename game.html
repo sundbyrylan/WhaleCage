@@ -1,145 +1,155 @@
 <!DOCTYPE html>
+
 <html lang="en">
+    
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Entrepreneur Investment Game</title>
-<style>
-body {
-font-family: Arial, sans-serif;
-text-align: center;
-background-color: #f4f4f4;
-margin: 0;
-padding: 20px;
-}
-#game-container {
-background: white;
-padding: 20px;
-border-radius: 10px;
-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-max-width: 500px;
-margin: auto;
-}
-.stat {
-font-weight: bold;
-}
-button {
-padding: 10px;
-margin: 10px;
-font-size: 16px;
-cursor: pointer;
-border: none;
-border-radius: 5px;
-}
-.invest {
-background-color: green;
-color: white;
-}
-.pass {
-background-color: red;
-color: white;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrepreneur Investment Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        #game-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: auto;
+        }
+        .stat {
+            font-weight: bold;
+        }
+        button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .invest {
+            background-color: green;
+            color: white;
+        }
+        .pass {
+            background-color: red;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
 <div id="game-container">
-<h2>Pitches</h2>
-<p id="pitch">Click 'New Pitch' to start!</p>
+    <h2>Pitches</h2>
+    <p id="pitch">Click 'New Pitch' to start!</p>
 
-<button class="invest" onclick="invest()">Invest</button>
-<button class="pass" onclick="nextPitch()">Pass</button>
+    <button class="invest" onclick="invest()">Invest</button>
+    <button class="pass" onclick="nextPitch()">Pass</button>
 
-<h3>Your Stats</h3>
-<p>Influence: <span class="stat" id="influence">20</span></p>
-<p>Profitability: <span class="stat" id="profitability">20</span></p>
-<p>Reputation: <span class="stat" id="reputation">20</span></p>
-<p>Networking: <span class="stat" id="networking">20</span></p>
-<p>Business Strategy: <span class="stat" id="strategy">20</span></p>
-    <p>Investing Score: <span class="stat" id="average">20</span></p>
+    <h3>Your Stats</h3>
+    <p>Influence: <span class="stat" id="influence">20</span></p>
+    <p>Profitability: <span class="stat" id="profitability">20</span></p>
+    <p>Reputation: <span class="stat" id="reputation">20</span></p>
+    <p>Networking: <span class="stat" id="networking">20</span></p>
+    <p>Business Strategy: <span class="stat" id="strategy">20</span></p>
     <p>Average Score: <span class="stat" id="average">20</span></p>
 </div>
 
 <script>
-let stats = {
-influence: 20,
-profitability: 20,
-reputation: 20,
-networking: 20,
-strategy: 20,
-average: 20
-};
+    let stats = {
+        influence: 20,
+        profitability: 20,
+        reputation: 20,
+        networking: 20,
+        strategy: 20,
+        average: 20
+    };
 
-const pitches = [
-{ text: "A tech startup developing AI-driven customer service bots.", effects: { influence: +5, profitability: +7, reputation: +3, networking: +4, strategy: +6 } },
+    const pitches = [
+        { text: "A tech startup developing AI-driven customer service bots.", effects: { influence: +5, profitability: +7, reputation: +3, networking: +4, strategy: +6 } },
+        { text: "A biodegradable, plant-based towel that's safe for the environment and your skin."", effects: { influence: +5, profitability: +7, reputation: +3, networking: +4, strategy: +6 } },
 { text: "A sustainable fashion brand using recycled materials.", effects: { influence: +4, profitability: +3, reputation: +8, networking: +5, strategy: +2 } },
-{ text: "A delivery app for homemade meals.", effects: { influence: +3, profitability: +5, reputation: +6, networking: +7, strategy: +4 } },
-{ text: "A mobile game studio creating AR-based board games.", effects: { influence: +6, profitability: +4, reputation: +5, networking: +3, strategy: +8 } },
-{ text: "A fitness app that customizes workout plans with AI.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
-{ text: "A fitness app that customizes workout plans with AI.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
-{ text: "A fitness app that customizes workout plans with AI.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
-{ text: "A fitness app that customizes workout plans with AI.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
-{ text: "A fitness app that customizes workout plans with AI.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
-{ text: "A fitness app that customizes workout plans with AI.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } }
-];
+        { text: "A delivery app for homemade meals.", effects: { influence: +3, profitability: +5, reputation: +6, networking: +7, strategy: +4 } },
+        { text: "A mobile game studio creating AR-based board games.", effects: { influence: +6, profitability: +4, reputation: +5, networking: +3, strategy: +8 } },
+        { text: "A fitness app that customizes workout plans with AI.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
+        { text: "A fitness app that customizes workout plans with AI.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
+        { text: "A fitness app that customizes workout plans with AI.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
+        { text: "A fitness app that customizes workout plans with AI.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
+        { text: "A fitness app that customizes workout plans with AI.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
+        { text: "A fitness app that customizes workout plans with AI.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } }
+        { text: "A self-cooling water bottle utilizing solar energy.", effects: { influence: +3, profitability: +5, reputation: +6, networking: +7, strategy: +4 } },
+        { text: "An intelligent home security system that runs entirely on renewable energy.", effects: { influence: +6, profitability: +4, reputation: +5, networking: +3, strategy: +8 } },
+        { text: "A supplement that promises rapid muscle gain, sidestepping FDA regulations.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
+        { text: "A program that completes students homework automatically.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
+        { text: "A special coating that covers food and keeps it fresh, disregarding the chemicals it used to make it.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
+        { text: "An Amazon rainforest logging company that produces human sculptures", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
+        { text: "A clothing company that sources their materials out of needy countries.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } },
+        { text: "A oil company that bases their factories in third-world countries.", effects: { influence: +7, profitability: +6, reputation: +4, networking: +3, strategy: +5 } }
+    ];
 
-let round = 0;
-const maxRounds = 10;
-let Index = 0;
+    let round = 0;
+    const maxRounds = 10;
+    let Index = 0;
 
-function nextPitch() {
-if (checkEndGame()) return;
+    function nextPitch() {
+        if (checkEndGame()) return;
 
 
-Index = round;
-round++
-document.getElementById("pitch").innerText = pitches[Index].text;
+        Index = round;
+        round++
+        document.getElementById("pitch").innerText = pitches[Index].text;
+    }
+
+    function invest() {
+        if (checkEndGame()) return;
+
+        let effects = pitches[Index].effects;
+        Object.keys(effects).forEach(stat => stats[stat] += effects[stat]);
+
+        updateStats();
+
+        nextPitch();
+    }
+
+    function updateStats() {
+        document.getElementById("influence").innerText = stats.influence;
+        document.getElementById("profitability").innerText = stats.profitability;
+        document.getElementById("reputation").innerText = stats.reputation;
+        document.getElementById("networking").innerText = stats.networking;
+        document.getElementById("strategy").innerText = stats.strategy;
+        document.getElementById("average").innerText = (stats.influence+stats.profitability+stats.reputation+stats.networking+stats.strategy)/5;
 }
 
-function invest() {
-if (checkEndGame()) return;
+    function checkEndGame() {
+        if (round >= maxRounds){
+        if (Object.values(stats).some(stat => stat <= 20)) {
+            window.location.href = "bad_ending.html";
+            return true;
+        }
+        if (Object.values(stats).some(stat => stat <= 50)) {
+            window.location.href = "good_ending.html";
+            return true;
+        }
+        if (Object.values(stats).every(stat => stat <= 75)) {
+            window.location.href = "funny_ending.html";
+            return true;
+        }else{
+            window.location.href = "meh_ending.html";
+            return true;
+        }
+        }else{
+            return false
+        }
+        nextPitch();
+    }
 
-let effects = pitches[Index].effects;
-Object.keys(effects).forEach(stat => stats[stat] += effects[stat]);
-
-updateStats();
-
-nextPitch();
-}
-
-function updateStats() {
-document.getElementById("influence").innerText = stats.influence;
-document.getElementById("profitability").innerText = stats.profitability;
-document.getElementById("reputation").innerText = stats.reputation;
-document.getElementById("networking").innerText = stats.networking;
-document.getElementById("strategy").innerText = stats.strategy;
-document.getElementById("average").innerText = (stats.influence+stats.profitability+stats.reputation+stats.networking+stats.strategy)/5;
-}
-
-function checkEndGame() {
-if (round >= maxRounds){
-if (Object.values(stats).some(stat => stat <= 20)) {
-window.location.href = "bad_ending.html";
-return true;
-}
-if (Object.values(stats).some(stat => stat <= 50)) {
-window.location.href = "good_ending.html";
-return true;
-}
-if (Object.values(stats).every(stat => stat <= 75)) {
-window.location.href = "funny_ending.html";
-return true;
-}else{
-window.location.href = "meh_ending.html";
-return true;
-}
-}else{
-return false
-}
-nextPitch();
-}
-
-nextPitch(); 
+    nextPitch(); 
 </script>
 
 </body>
