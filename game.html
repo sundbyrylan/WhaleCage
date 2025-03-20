@@ -83,22 +83,24 @@
     ];
 
     let round = 0;
-    const maxRounds = 10;
-    let Index = 0;
+    const maxRounds = 5;
 
     function nextPitch() {
         if (checkEndGame()) return;
 
+            
+
         
-        Index = round;
-        round++
-        document.getElementById("pitch").innerText = pitches[Index].text;
+
+        round++;
+        const randomIndex = Math.floor(Math.random() * pitches.length);
+        document.getElementById("pitch").innerText = pitches[randomIndex].text;
     }
 
     function invest() {
         if (checkEndGame()) return;
 
-        let effects = pitches[Index].effects;
+        let effects = pitches[Math.floor(Math.random() * pitches.length)].effects;
         Object.keys(effects).forEach(stat => stats[stat] += effects[stat]);
 
         updateStats();
@@ -112,20 +114,19 @@
         document.getElementById("reputation").innerText = stats.reputation;
         document.getElementById("networking").innerText = stats.networking;
         document.getElementById("strategy").innerText = stats.strategy;
-        document.getElementById("average").innerText = (stats.influence+stats.profitability+stats.reputation+stats.networking+stats.strategy)/5;
     }
 
     function checkEndGame() {
         if (round >= maxRounds){
-         if (Object.values(stats).some(stat => stat <= 20)) {
+         if (Object.values(stats).some(stat => stat < 20)) {
              window.location.href = "bad_ending.html";
              return true;
          }
-         if (Object.values(stats).some(stat => stat <= 50)) {
+         if (Object.values(stats).every(stat => stat >= 80)) {
              window.location.href = "good_ending.html";
                 return true;
             }
-            if (Object.values(stats).every(stat => stat <= 75)) {
+            if (Object.values(stats).every(stat => stat === 69)) {
              window.location.href = "funny_ending.html";
              return true;
          }else{
@@ -135,7 +136,6 @@
         }else{
             return false
         }
-        nextPitch();
     }
 
     nextPitch(); 
