@@ -1,140 +1,141 @@
 <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Entrepreneur Investment Game</title>
-     <style>
-         body {
-             font-family: Arial, sans-serif;
-             text-align: center;
-             background-color: #f4f4f4;
-             margin: 0;
-             padding: 20px;
-         }
-         #game-container {
-             background: white;
-             padding: 20px;
-             border-radius: 10px;
-             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-             max-width: 500px;
-             margin: auto;
-         }
-         .stat {
-             font-weight: bold;
-         }
-         button {
-             padding: 10px;
-             margin: 10px;
-             font-size: 16px;
-             cursor: pointer;
-             border: none;
-             border-radius: 5px;
-         }
-         .invest {
-             background-color: green;
-             color: white;
-         }
-         .pass {
-             background-color: red;
-             color: white;
-         }
-     </style>
- </head>
- <body>
- 
- <div id="game-container">
-     <h2>Pitches</h2>
-     <p id="pitch">Click 'New Pitch' to start!</p>
- 
-     <button class="invest" onclick="invest()">Invest</button>
-     <button class="pass" onclick="nextPitch()">Pass</button>
- 
-     <h3>Your Stats</h3>
-     <p>Influence: <span class="stat" id="influence">20</span></p>
-     <p>Profitability: <span class="stat" id="profitability">20</span></p>
-     <p>Reputation: <span class="stat" id="reputation">20</span></p>
-     <p>Networking: <span class="stat" id="networking">20</span></p>
-     <p>Business Strategy: <span class="stat" id="strategy">20</span></p>
-     <p>Investing Score: <span class="stat" id="total">0</p>
- </div>
- 
- <script>
-     let stats = {
-         influence: 20,
-         profitability: 20,
-         reputation: 20,
-         networking: 20,
-         strategy: 20,
-         total: 0
-     };
- 
-     const pitches = [
-         { text: "A tech startup developing AI-driven customer service bots.", effects: { influence: +0, profitability: -5, reputation: +5, networking: +0, strategy: +5} },
-         { text: "A logging comapny in the amazon responsible for destroying forests.", effects: { influence: -10, profitability: +10, reputation: -10, networking: -10, strategy: +0} },
-         { text: "A fasion brand that uses recycled materials.", effects: { influence: +5, profitability: +0, reputation: +5, networking: -5, strategy: -5} },
-         { text: "A fitness app that takes a steep montly membership to get minimal work-outs.", effects: { influence: -5, profitability: +10, reputation: -10, networking: +0, strategy: +5 },
-         { text: "A delivery app that delivers groceries and food to the disabled.", effects: { influence: +5, profitability: -10, reputation: -+5, networking: +0, strategy: +5} },
-     ];
- 
-     let round = 0;
-     const maxRounds = 5;
-     let Index = 0;
- 
-     function nextPitch() {
-         if (checkEndGame()) return;
- 
- 
-         Index = round;
-         round++
-         document.getElementById("pitch").innerText = pitches[Index].text;
-     }
- 
-     function invest() {
-         if (checkEndGame()) return;
- 
-         let effects = pitches[Index].effects;
-         Object.keys(effects).forEach(stat => stats[stat] += effects[stat]);
- 
-         updateStats();
- 
-         nextPitch();
-     }
- 
-     function updateStats() {
-         document.getElementById("influence").innerText = stats.influence;
-         document.getElementById("profitability").innerText = stats.profitability;
-         document.getElementById("reputation").innerText = stats.reputation;
-         document.getElementById("networking").innerText = stats.networking;
-         document.getElementById("strategy").innerText = stats.strategy;
-         document.getElementById("total").innerText = (stats.influence+stats.profitability+stats.reputation+stats.networking+stats.strategy)/5;
-     }
- 
-     function checkEndGame() {
-         if (round >= maxRounds){
-          if (Object.values(stats).some(stat => stat <= 20)) {
-              window.location.href = "bad_ending.html";
-              return true;
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Entrepreneur Investment Game</title>
+      <style>
+          body {
+              font-family: Arial, sans-serif;
+              text-align: center;
+              background-color: #f4f4f4;
+              margin: 0;
+              padding: 20px;
           }
-          if (Object.values(stats).some(stat => stat <= 50)) {
-              window.location.href = "good_ending.html";
-                 return true;
-             }
-             if (Object.values(stats).every(stat => stat <= 75)) {
-              window.location.href = "funny_ending.html";
-              return true;
+          #game-container {
+              background: white;
+              padding: 20px;
+              border-radius: 10px;
+              box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+              max-width: 500px;
+              margin: auto;
+          }
+          .stat {
+              font-weight: bold;
+          }
+          button {
+              padding: 10px;
+              margin: 10px;
+              font-size: 16px;
+              cursor: pointer;
+              border: none;
+              border-radius: 5px;
+          }
+          .invest {
+              background-color: green;
+              color: white;
+          }
+          .pass {
+              background-color: red;
+              color: white;
+          }
+      </style>
+  </head>
+  <body>
+ 
+  <div id="game-container">
+      <h2>Pitches</h2>
+      <p id="pitch">Click 'New Pitch' to start!</p>
+ 
+      <button class="invest" onclick="invest()">Invest</button>
+      <button class="pass" onclick="nextPitch()">Pass</button>
+ 
+      <h3>Your Stats</h3>
+      <p>Influence: <span class="stat" id="influence">20</span></p>
+      <p>Profitability: <span class="stat" id="profitability">20</span></p>
+      <p>Reputation: <span class="stat" id="reputation">20</span></p>
+      <p>Networking: <span class="stat" id="networking">20</span></p>
+      <p>Business Strategy: <span class="stat" id="strategy">20</span></p>
+      <p>Investing Score: <span class="stat" id="total">0</p>
+  </div>
+ 
+  <script>
+      let stats = {
+          influence: 20,
+          profitability: 20,
+          reputation: 20,
+          networking: 20,
+          strategy: 20,
+          total: 0
+      };
+ 
+      const pitches = [
+          { text: "A tech startup developing AI-driven customer service bots.", effects: { influence: +1, profitability: +10, reputation: -5, networking: +4, strategy: -6 } },
+          { text: "A sustainable fashion brand using recycled materials.", effects: { influence: -4, profitability: -4, reputation: +10, networking: -3, strategy: +5 } },
+          { text: "A delivery app for homemade meals.", effects: { influence: +3, profitability: +7, reputation: -1, networking: -3, strategy: +5 } },
+          { text: "A mobile game studio creating AR-based board games.", effects: { influence: +3, profitability: -3, reputation: +2, networking: +4, strategy: -5 } },
+          { text: "A fitness app that takes a steep montly membership to get minimal work-outs.", effects: { influence: -8, profitability: +11, reputation: -4, networking: -10, strategy: -2 } },
+      ];
+ 
+      let round = 0;
+      const maxRounds = 5;
+      let Index = 0;
+ 
+      function nextPitch() {
+          if (checkEndGame()) return;
+ 
+ 
+          Index = round;
+          round++
+          document.getElementById("pitch").innerText = pitches[Index].text;
+      }
+ 
+      function invest() {
+          if (checkEndGame()) return;
+ 
+          let effects = pitches[Index].effects;
+          Object.keys(effects).forEach(stat => stats[stat] += effects[stat]);
+ 
+          updateStats();
+ 
+          nextPitch();
+      }
+ 
+      function updateStats() {
+          document.getElementById("influence").innerText = stats.influence;
+          document.getElementById("profitability").innerText = stats.profitability;
+          document.getElementById("reputation").innerText = stats.reputation;
+          document.getElementById("networking").innerText = stats.networking;
+          document.getElementById("strategy").innerText = stats.strategy;
+          document.getElementById("total").innerText = stats.influence+stats.profitability+stats.reputation+stats.networking+stats.strategy;
+          document.getElementById("total").innerText = (stats.influence+stats.profitability+stats.reputation+stats.networking+stats.strategy)/5;
+      }
+ 
+      function checkEndGame() {
+          if (round >= maxRounds){
+           if (Object.values(stats).some(stat => stat <= 20)) {
+               window.location.href = "bad_ending.html";
+               return true;
+           }
+           if (Object.values(stats).some(stat => stat <= 50)) {
+               window.location.href = "good_ending.html";
+                  return true;
+              }
+              if (Object.values(stats).every(stat => stat <= 75)) {
+               window.location.href = "funny_ending.html";
+               return true;
+           }else{
+               window.location.href = "meh_ending.html";
+               return true;
+           }
           }else{
-              window.location.href = "meh_ending.html";
-              return true;
+              return false
           }
-         }else{
-             return false
-         }
-         nextPitch();
-     }
+          nextPitch();
+      }
  
-     nextPitch(); 
- </script>
+      nextPitch(); 
+  </script>
  
- </body>
- </html>
+  </body>
+  </html>
